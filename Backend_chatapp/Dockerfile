@@ -1,7 +1,7 @@
-# Use official Python image
+# Use base image with Python
 FROM python:3.10-slim
 
-# Install system dependencies
+# Install system packages
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
@@ -9,24 +9,25 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libffi-dev \
     python3-dev \
+    pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Rust toolchain
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:$PATH"
 
-# Set work directory
+# Set working directory
 WORKDIR /app
 
-# Copy code
+# Copy all files
 COPY . .
 
 # Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Expose port
+# Expose FastAPI port
 EXPOSE 8000
 
-# Start server
+# Start the app
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
