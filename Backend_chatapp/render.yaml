@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: scrap-sathi-chatbot
+    env: docker  # <-- THIS IS THE KEY LINE
+    plan: free
+    region: oregon
+    branch: main
+    rootDir: .
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
