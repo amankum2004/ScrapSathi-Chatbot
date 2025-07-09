@@ -1,9 +1,9 @@
 services:
   - type: web
     name: scrap-sathi-chatbot
-    env: docker  # <-- THIS IS THE KEY LINE
-    plan: free
+    env: docker  # ⬅️ This is the most important line
     region: oregon
+    plan: free
     branch: main
     rootDir: .
     dockerfilePath: Dockerfile
