@@ -1,12 +1,12 @@
 services:
   - type: web
     name: scrap-sathi-chatbot
-    env: docker  # ⬅️ This is the most important line
-    region: oregon
-    plan: free
+    env: docker  # ← THIS IS CRITICAL!
     branch: main
     rootDir: .
     dockerfilePath: Dockerfile
+    plan: free
+    region: singapore
     envVars:
       - key: PORT
         value: 8000
